@@ -1,16 +1,21 @@
-  table,
-  td {
-    border: 1px solid black;
-  }
-  
-  table {
-    border-collapse: collapse;
-    margin: 12px 0;
-  }
-  
-  td {
-    padding: 12px;
-  }
+table,
+td {
+  border: 1px solid black;
+}
 
-  
-  
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+td {
+  padding: 12px;
+}
+
+header {
+  text-align: center;
+}
+
+div {
+  padding: 10px;
+}

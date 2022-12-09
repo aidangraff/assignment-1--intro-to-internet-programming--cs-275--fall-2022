@@ -29,8 +29,8 @@ let compressJS = () => {
 
 let validateJS = () => {
     return src(`dev/js/app.js`)
-    .pipe(jsValidator())
-    .pipe(jsValidator.formatEach(`compact`, process.stderr));
+        .pipe(jsValidator())
+        .pipe(jsValidator.formatEach(`compact`, process.stderr));
 };
 
 let transpileJSForDev = () => {
@@ -72,10 +72,14 @@ exports.compressHTML = compressHTML;
 exports.compressCSS = compressCSS;
 exports.compressJS = compressJS;
 exports.transpileJSForProd = transpileJSForProd;
-exports.serve = serve;
+exports.serve = series(
+    validateJS,
+    transpileJSForDev,
+    serve
+);
 exports.build = series(
     compressJS,
     transpileJSForProd,
     compressHTML,
-    compressCSS,
+    compressCSS
 );
