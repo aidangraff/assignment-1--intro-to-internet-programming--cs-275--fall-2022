@@ -11,20 +11,20 @@ const { src, dest, series, watch } = require(`gulp`),
 let compressHTML = () => {
     return src(`dev/html/index.html`)
         .pipe(htmlCompressor({collapseWhitespace: true}))
-        .pipe(dest(`prod`));
+        .pipe(dest(`prod/dev/html`));
 };
 
 let compressCSS = () => {
     return src(`dev/css/style.css`)
         .pipe(cssCompressor({collapseWhitespace: true}))
-        .pipe(dest(`prod`));
+        .pipe(dest(`prod/dev/css`));
 };
 
 let compressJS = () => {
     return src(`dev/js/app.js`)
         .pipe(babel())
         .pipe(jsCompressor())
-        .pipe(dest(`prod`));
+        .pipe(dest(`prod/dev/js`));
 };
 
 let validateJS = () => {
@@ -43,7 +43,7 @@ let transpileJSForProd = () => {
     return src(`dev/js/app.js`)
         .pipe(babel())
         .pipe(jsCompressor())
-        .pipe(dest(`prod/scripts`));
+        .pipe(dest(`prod/dev/js`));
 };
 
 let serve = () => {
@@ -78,7 +78,6 @@ exports.serve = series(
     serve
 );
 exports.build = series(
-    compressJS,
     transpileJSForProd,
     compressHTML,
     compressCSS
